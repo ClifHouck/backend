@@ -40,6 +40,9 @@ option(TRITON_ENABLE_MEMORY_TRACKER "Include device memory tracker in backend ut
 set(TRITON_COMMON_REPO_TAG "main" CACHE STRING "Tag for triton-inference-server/common repo")
 set(TRITON_CORE_REPO_TAG "main" CACHE STRING "Tag for triton-inference-server/core repo")
 
+set(TRITON_COMMON_GIT_REPO "https://github.com/triton-inference-server/common.git" CACHE STRING "Git repository to use for common triton repo")
+set(TRITON_CORE_GIT_REPO "https://github.com/triton-inference-server/core.git" CACHE STRING "Git repository to use for core triton repo")
+
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
@@ -56,13 +59,13 @@ include(FetchContent)
 
 FetchContent_Declare(
   repo-common
-  GIT_REPOSITORY https://github.com/triton-inference-server/common.git
+  GIT_REPOSITORY ${TRITON_COMMON_GIT_REPO}
   GIT_TAG ${TRITON_COMMON_REPO_TAG}
   GIT_SHALLOW ON
 )
 FetchContent_Declare(
   repo-core
-  GIT_REPOSITORY https://github.com/triton-inference-server/core.git
+  GIT_REPOSITORY ${TRITON_CORE_GIT_REPO}
   GIT_TAG ${TRITON_CORE_REPO_TAG}
   GIT_SHALLOW ON
 )
